@@ -9,6 +9,9 @@ public class SpaceshipMovement : MonoBehaviour {
     [SerializeField] GameObject modelObject;
     private Camera camera;
     private bool canMove;
+    private Plane movementPlane;
+    private Vector3 prevPos;
+    private Vector3 currPos;
 
     public void StopMovement() => canMove = false;
 
@@ -16,6 +19,7 @@ public class SpaceshipMovement : MonoBehaviour {
 	    //modelObject = GetComponentInChildren<GameObject>();
 	    camera = Camera.main;
 	    canMove = true;
+	    movementPlane = new Plane(Vector3.forward,transform.position);
     }
 
     // Update is called once per frame
@@ -29,26 +33,49 @@ public class SpaceshipMovement : MonoBehaviour {
 
     void SetMovement() {
 	    if (Input.GetKey(KeyCode.W)) {
-		    transform.position += transform.up * speed * Time.deltaTime;
+		    transform.position += Vector3.up * speed * Time.deltaTime;
 	    }
 
 	    if (Input.GetKey(KeyCode.S)) {
-		    transform.position += -transform.up * speed * Time.deltaTime;
+		    transform.position += -Vector3.up * speed * Time.deltaTime;
 	    }
 
 	    if (Input.GetKey(KeyCode.A)) {
-		    transform.position += -transform.right * speed * Time.deltaTime;
+		    transform.position += -Vector3.right * speed * Time.deltaTime;
 	    }
 
 	    if (Input.GetKey(KeyCode.D)) {
-		    transform.position += transform.right * speed * Time.deltaTime;
+		    transform.position += Vector3.right * speed * Time.deltaTime;
 	    }
 
-	    Vector3 diff = camera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-	    diff.Normalize();
 
-	    float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-	    modelObject.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+	    float distance = 0;
+	    Ray ray = camera.ScreenPointToRay((Input.mousePosition));
+	    if (movementPlane.Raycast(ray, out distance)) {
+		    currPos = ray.GetPoint(distance);
+		    transform.LookAt(currPos, Vector3.back);
+		    // if (prevPos != Vector3.zero) {
+			   //  var point = Vector3.Lerp(prevPos, currPos, 0.5f);
+			   //  transform.LookAt(point,Vector3.back);
+		    // }
+		    // else {
+			   //  
+			   //  prevPos = currPos;
+		    // }
+	    }
+	    
+	    
+	    
+	    
+	    
+	    
+	    // Vector2 diff = camera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+	    // diff.Normalize();
+	    //
+	    // //var angle = Vector2.Angle(diff, new Vector2(1, 0));
+	    // float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+	    //
+	    // modelObject.transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
 
     }
 
