@@ -7,9 +7,10 @@ public class ObstacleController : MonoBehaviour {
 
 	[SerializeField] private GameObject explosion;
 	public Action OnObstacleDeath;
-	
-	
-	
+	[SerializeField] private int lifeDamager;
+
+	public int LifeDamager => lifeDamager;
+
 	private void OnTriggerEnter2D(Collider2D col) {
 		if (col.gameObject.GetComponent<BulletMovement>()) {
 			OnObstacleDeath?.Invoke();
