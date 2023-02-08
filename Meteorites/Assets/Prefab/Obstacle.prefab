@@ -252,6 +252,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  waitTimer: 0.8
 --- !u!114 &8260619177548281423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,3 +265,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc279547aae0cc46a7a56de016d9792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}

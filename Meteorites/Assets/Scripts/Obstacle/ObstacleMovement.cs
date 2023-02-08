@@ -13,17 +13,22 @@ public class ObstacleMovement : MonoBehaviour {
   [SerializeField] private Collider planeCollider;
   [SerializeField] private float timerMovement;
   [SerializeField] private AnimationCurve curve;
+  [SerializeField] private float waitTimer;
   private float rangeX;
   private float rangeY;
 
   private void Awake() {
     velocityRotation = Random.Range(rangeVelocityRotation.x, rangeVelocityRotation.y);
     timerMovement = Random.Range(rangeTimerLerp.x, rangeTimerLerp.y);
+    
+   
+  }
+
+  public void Init(Collider plane) {
+    planeCollider = plane;
     rangeX = planeCollider.bounds.size.x / 2;
     rangeY = planeCollider.bounds.size.y / 2;
-    StartCoroutine(MoveObstacoleCor(CalculateNewPosition()));
-    
-  }
+    StartCoroutine(MoveObstacoleCor(CalculateNewPosition()));}
 
   private void Update() {
     obstacleModel.transform.Rotate(Vector3.forward*velocityRotation*Time.deltaTime);
@@ -43,7 +48,7 @@ public class ObstacleMovement : MonoBehaviour {
       yield return null;
     }
     transform.position = newPos;
-    yield return new WaitForSeconds(2f);
+    yield return new WaitForSeconds(waitTimer);
     StartCoroutine(MoveObstacoleCor(CalculateNewPosition()));
 
   }
