@@ -794,6 +794,7 @@ MonoBehaviour:
   obstacleToSpawn: {fileID: 8260619177548281409, guid: 767b34fab88f37948833eb4e362029e1, type: 3}
   offsetSpawn: 2
   spawnWithTimer: 0
+  obstacleToInstanceAfterExplosion: 2
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

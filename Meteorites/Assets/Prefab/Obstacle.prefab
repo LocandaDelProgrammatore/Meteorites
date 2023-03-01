@@ -267,3 +267,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
   lifeDamager: 2
+  minMaxSize: {x: 0.5, y: 5}
+  minSizeForSpawnNewAsteroid: 3

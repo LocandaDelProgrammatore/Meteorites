@@ -38,3 +38,10 @@ public class SpaceshipShoot : MonoBehaviour {
     canShoot = false;
   }
 }
+
+
+
+
+public class Equip : MonoBehaviour {
+  
+}

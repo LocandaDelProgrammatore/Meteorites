@@ -12,6 +12,7 @@ public class ObstacleSpawner : MonoBehaviour {
     [SerializeField] private GameObject obstacleToSpawn;
     [SerializeField] private float offsetSpawn = 2f;
     [SerializeField] private bool spawnWithTimer;
+    [SerializeField] private int obstacleToInstanceAfterExplosion;
     private float currentTimer;
     private float sizeX;
     private float sizeY;
@@ -41,15 +42,27 @@ public class ObstacleSpawner : MonoBehaviour {
     }
 
     private void Spawn() {
-
         Vector3 pos = ChoiceDirection(); 
         var obstacle = Instantiate(obstacleToSpawn, pos, Quaternion.identity);
         var obstacleMovementComponent = obstacle.GetComponent<ObstacleMovement>();
         if (!spawnWithTimer) {
             var obstacleController = obstacle.GetComponent<ObstacleController>();
+            obstacleController.Init(false);
             obstacleController.OnObstacleDeath += Spawn;
+            obstacleController.OnObstacleRequestSpawn += SpawnAfterExplosion;
         }
         obstacleMovementComponent.Init(planeCollider);
+    }
+
+
+    private void SpawnAfterExplosion(Vector3 pos,float scaleParent) {
+        for (int i = 0; i < obstacleToInstanceAfterExplosion; i++) {
+            var obstacle = Instantiate(obstacleToSpawn, pos, Quaternion.identity);
+            var obstacleMovementComponent = obstacle.GetComponent<ObstacleMovement>();
+            var obstacleController = obstacle.GetComponent<ObstacleController>();
+            obstacleController.Init(true,scaleParent);
+            obstacleMovementComponent.Init(planeCollider);
+        }
     }
 
 
