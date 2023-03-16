@@ -13,11 +13,24 @@ public class SpaceshipShoot : MonoBehaviour {
   private bool canShoot;
   private float currentTimerRecharge;
   private AudioSource source;
+  private DropManager dropManager;
   
   
   
   private void Awake() {
     source = GetComponent<AudioSource>();
+    dropManager = FindObjectOfType<DropManager>();
+    dropManager.OnDropRequested += TryAddPower;
+  }
+
+
+  private void TryAddPower(Drop drop) {
+    if (drop is not ShootPower powerDrop) {
+      return;
+    }
+
+    shootPower = powerDrop;
+
   }
 
   private void Update() {

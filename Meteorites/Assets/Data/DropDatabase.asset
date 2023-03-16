@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e9ee6f325ef4b0eb47e4b4c138e78e3, type: 3}
+  m_Name: DropDatabase
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  allDrops:
+  - drops:
+    - {fileID: 11400000, guid: 80f65cbb261bde8419b6afe16ddf8bb4, type: 2}
+    rangeProbability: {x: 0, y: 0.56}
+  - drops:
+    - {fileID: 11400000, guid: 04c1bf21dbe75774c834daf79a32ed17, type: 2}
+    rangeProbability: {x: 0.56, y: 0.8}
+  - drops:
+    - {fileID: 11400000, guid: f298fd869a42f5044a80feea6efe7fd2, type: 2}
+    rangeProbability: {x: 0.8, y: 1}
+  tableReductionRanges:
+  - dimension: {x: 0.5, y: 2.5}
+    lowerRange: 0
+  - dimension: {x: 2.51, y: 4.5}
+    lowerRange: 0.4
+  - dimension: {x: 4.5, y: 5}
+    lowerRange: 0.6

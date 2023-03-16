@@ -269,3 +269,4 @@ MonoBehaviour:
   lifeDamager: 2
   minMaxSize: {x: 0.5, y: 5}
   minSizeForSpawnNewAsteroid: 3
+  minSizeForSpawnDrop: 3

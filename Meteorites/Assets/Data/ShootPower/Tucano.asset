@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972df8072a09453faa58bae0666b3f48, type: 3}
   m_Name: Tucano
   m_EditorClassIdentifier: 
-  bulletToInstance: {fileID: 4807535373525705567, guid: 70e9fc484b5cbdc4f97205d5e29b4f1f, type: 3}
+  dropSprite: {fileID: 21300000, guid: 89fde1079e96e2d4eb354713091b3c5c, type: 3}
+  bulletToInstance: {fileID: 6587054817672356751, guid: 97fccb8c154ad374b97270fea4d7d7e2, type: 3}
   lifeTimeBullet: 3
   lifeDamageBullet: 1
   velocity: 8
