@@ -23,7 +23,10 @@ public class UiPowerShoot : MonoBehaviour {
         if (dropPower == null) {
             return false;
         }
-        
+        if (dropPower is BombDrop) {
+            return false;
+        }
+
         return drop.categoryPower == dropPower.categoryPower;
     }
 }

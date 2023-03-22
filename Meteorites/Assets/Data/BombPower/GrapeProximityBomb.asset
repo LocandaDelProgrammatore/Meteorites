@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4b03ce197f44aaae137969d0f17402, type: 3}
+  m_Name: GrapeProximityBomb
+  m_EditorClassIdentifier: 
+  dropSprite: {fileID: 21300000, guid: a6702278ceedaab4fadfa3044648bfc3, type: 3}
+  categoryPower: 1
+  bombToInstance: {fileID: 7657538603481007682, guid: fab1e570268548842b2b635920dca5d5, type: 3}
+  explosionObject: {fileID: 3428038646114356431, guid: 1aea6a7c44b917044a639f14a7d91195, type: 3}
+  damage: 0
+  velocity: 3
+  sizeExplosion: 2
+  lifeTimer: 3
+  timerMovement: 1
+  waitTimer: 1
+  sizeBomb: 0.6

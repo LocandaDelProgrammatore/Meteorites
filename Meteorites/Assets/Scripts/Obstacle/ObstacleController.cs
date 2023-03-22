@@ -35,10 +35,13 @@ public class ObstacleController : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D col) {
-		var bulletComponent = col.gameObject.GetComponent<BulletMovement>();
+		var bulletComponent = col.gameObject.GetComponent<BulletLogic>();
+		var explosionComponent = col.gameObject.GetComponent<ExplosionLogic>();
 		
-		if (bulletComponent != null) {
+		if (bulletComponent != null || explosionComponent !=null) {
+			
 			OnObstacleDeath?.Invoke();
+			
 			if (isRequestSpawnOtherObstacle) {
 				OnObstacleRequestSpawn?.Invoke(transform.position,transform.localScale.x);
 			}
@@ -47,7 +50,7 @@ public class ObstacleController : MonoBehaviour {
 				dropSpawner.Spawn(DropDatabase.Instance.GetDrop(sizeRandom), transform.position);
 			}
 			
-			if (!bulletComponent.PenetratingEnemy) {
+			if (bulletComponent!=null &&  !bulletComponent.PenetratingEnemy) {
 				bulletComponent.DestroyBullet();
 			}
 			
