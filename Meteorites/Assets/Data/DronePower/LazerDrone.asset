@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38393cd70a1401993144c86a1620db6, type: 3}
+  m_Name: LazerDrone
+  m_EditorClassIdentifier: 
+  dropSprite: {fileID: 21300000, guid: f10a753d013f1dc43a137d227f2f0e74, type: 3}
+  categoryPower: 2
+  life: 5
+  droneSprite: {fileID: 21300000, guid: f10a753d013f1dc43a137d227f2f0e74, type: 3}
+  shootPower: {fileID: 11400000, guid: 04c1bf21dbe75774c834daf79a32ed17, type: 2}

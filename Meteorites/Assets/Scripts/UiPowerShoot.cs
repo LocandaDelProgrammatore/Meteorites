@@ -8,6 +8,8 @@ public class UiPowerShoot : MonoBehaviour {
     [SerializeField] private Image spriteImage;
     private PowerDrop dropPower;
 
+    public PowerDrop DropPower => dropPower;
+
     public void Awake() {
         spriteImage.sprite = null;
     }
@@ -17,6 +19,10 @@ public class UiPowerShoot : MonoBehaviour {
         spriteImage.sprite = dropPower.dropSprite;
     }
 
+    public void DeInit() {
+        dropPower = null;
+        spriteImage.sprite = null;
+    }
 
 
     public bool IsSameType(PowerDrop drop) {

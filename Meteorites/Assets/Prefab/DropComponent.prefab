@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 5095445538175574494}
   drop: {fileID: 0}
+  timerFade: 5
