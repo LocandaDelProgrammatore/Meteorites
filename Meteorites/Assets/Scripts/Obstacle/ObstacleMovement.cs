@@ -41,6 +41,7 @@ public class ObstacleMovement : MonoBehaviour {
 
   IEnumerator MoveObstacoleCor(Vector2 newPos) {
     var initPos = transform.position;
+    newPos = new Vector2(planeCollider.transform.position.x + newPos.x, planeCollider.transform.position.y + newPos.y);
     float t = 0f;
     while (t < timerMovement) {
       transform.position = Vector3.Lerp(initPos,newPos, curve.Evaluate(t/timerMovement));

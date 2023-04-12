@@ -15,6 +15,8 @@ public class SpaceshipMovement : MonoBehaviour {
 
     public void StopMovement() => canMove = false;
 
+    public void RestartMovement() => canMove = true;
+
     private void Awake() {
 	    //modelObject = GetComponentInChildren<GameObject>();
 	    camera = Camera.main;

@@ -6,9 +6,9 @@ using Random = UnityEngine.Random;
 
 public class ObstacleController : MonoBehaviour {
 
-	public Action OnObstacleDeath;
+	public Action<ObstacleController> OnObstacleDeath;
 	public Action<Vector3,float> OnObstacleRequestSpawn;
-
+	
 	[SerializeField] private GameObject explosion;
 	[SerializeField] private int lifeDamager;
 	[SerializeField] private Vector2 minMaxSize = new Vector2(0.5f, 5);
@@ -40,7 +40,7 @@ public class ObstacleController : MonoBehaviour {
 		
 		if (bulletComponent != null || explosionComponent !=null) {
 			
-			OnObstacleDeath?.Invoke();
+			OnObstacleDeath?.Invoke(this);
 			
 			if (isRequestSpawnOtherObstacle) {
 				OnObstacleRequestSpawn?.Invoke(transform.position,transform.localScale.x);

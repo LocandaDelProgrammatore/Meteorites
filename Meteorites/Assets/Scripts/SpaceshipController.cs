@@ -12,6 +12,8 @@ public class SpaceshipController : MonoBehaviour {
 
 	public int Life => life;
 
+	public SpaceshipMovement SpaceshipMovement => spaceshipMovement;
+
 	private void Awake() {
 		spaceshipMovement = GetComponent<SpaceshipMovement>();
 		
