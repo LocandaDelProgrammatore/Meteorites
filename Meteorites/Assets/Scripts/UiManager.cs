@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class UiManager : MonoBehaviour {
 
 	[SerializeField] private TMP_Text gameOverText;
-	[SerializeField] private Button gameOverButton;
+	[SerializeField] private TMP_Text winText;
+	[SerializeField] private Button restartButton;
 
 	private void Awake() {
 		gameOverText.gameObject.SetActive(false);
-		gameOverButton.onClick.AddListener(RestartGame);
-		gameOverButton.gameObject.SetActive(false);
+		winText.gameObject.SetActive(false);
+		restartButton.onClick.AddListener(RestartGame);
+		restartButton.gameObject.SetActive(false);
 	}
 
 	private void RestartGame() {
@@ -20,6 +22,13 @@ public class UiManager : MonoBehaviour {
 
 	public void ActiveGameOverUiElements() {
 		gameOverText.gameObject.SetActive(true);
-		gameOverButton.gameObject.SetActive(true);
+		restartButton.gameObject.SetActive(true);
+	}
+
+
+	public void ActiveWinUiElement() {
+		
+		winText.gameObject.SetActive(true);
+		restartButton.gameObject.SetActive(true);
 	}
 }

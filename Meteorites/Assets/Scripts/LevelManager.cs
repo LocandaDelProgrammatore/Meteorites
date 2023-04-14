@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour {
 	[SerializeField] private SpaceshipController spaceshipController;
 	[SerializeField] FloorManager currentFloor;
 	[SerializeField] private float timerMovement;
+	[SerializeField] private float outOfBoundsTimer;
 	private Camera mainCamera;
 
 	private List<FloorManager> floorManagers = new List<FloorManager>();
@@ -26,6 +27,7 @@ public class LevelManager : MonoBehaviour {
 		obstacleSpawner.InitSpawn(currentFloor.GetComponent<Collider>());
 		foreach (var floorManager in floorManagers) {
 			floorManager.OnChangeFloorRequested += UpdateCurrentFloor;
+			floorManager.OnBoundReached += AddForceToSpaceShip;
 		}
 	}
 
@@ -34,6 +36,32 @@ public class LevelManager : MonoBehaviour {
 		currentFloor.TurnoffCollider();
 		currentFloor = floorGenerator.GetFloorBasedOnIndex(x, y);
 		StartCoroutine(MoveCamera());
+	}
+
+
+	private void AddForceToSpaceShip() {
+		
+		StartCoroutine(WaitBeforeActiveSpaceShipMovement());
+
+	}
+
+	IEnumerator WaitBeforeActiveSpaceShipMovement() {
+		spaceshipController.SpaceshipMovement.StopMovement();
+		var posSpaceship = spaceshipController.transform.position;
+		var currentPosFloor = currentFloor.transform.position;
+		float finalX = (posSpaceship.x + currentPosFloor.x) / 2;
+		float finalY = (posSpaceship.y + currentPosFloor.y) / 2;
+		var finalPosSpaceship = new Vector3(finalX, finalY);
+		float t = 0f;
+
+		while (t < outOfBoundsTimer) {
+			spaceshipController.transform.position = Vector3.Lerp(posSpaceship,finalPosSpaceship,t/outOfBoundsTimer);
+			t += Time.deltaTime;
+			yield return null;
+		}
+		
+		spaceshipController.SpaceshipMovement.RestartMovement();
+
 	}
 
 
@@ -55,8 +83,10 @@ public class LevelManager : MonoBehaviour {
 		}
 		
 		mainCamera.transform.position = new Vector3(finalPosCamera.x, finalPosCamera.y, mainCamera.transform.position.z);
-		obstacleSpawner.ChangeCollider(currentFloor.GetComponent<Collider>());
-		currentFloor.ActiveFloorCollider();
+		if (!floorGenerator.IsCurrentFloorFinal(currentFloor)) {
+			obstacleSpawner.ChangeCollider(currentFloor.GetComponent<Collider>());
+			currentFloor.ActiveFloorCollider();
+		}
 		spaceshipController.SpaceshipMovement.RestartMovement();
 	}
 

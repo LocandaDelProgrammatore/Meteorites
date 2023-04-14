@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FloorGenerator : MonoBehaviour {
 
@@ -26,7 +27,13 @@ public class FloorGenerator : MonoBehaviour {
 
 	public List<FloorManager> FloorGenerated => floorGenerated;
 
+	private FloorManager finalFloor;
+
+	private GameManager gameManager;
+
 	private void Awake() {
+		
+		gameManager = FindObjectOfType<GameManager>();
 		localScaleX = floorInstance.transform.localScale.x;
 		localScaleY = floorInstance.transform.localScale.y;
 		GenerateFloor();
@@ -65,7 +72,18 @@ public class FloorGenerator : MonoBehaviour {
 		}
 		else {
 			OnFinishIstanciate?.Invoke(floorGenerated);
+			ChooseFinalPlanet();	
 		}
+	}
+
+	void ChooseFinalPlanet() {
+		
+		var indexX = Random.Range(0, 2) == 0 ? N-1 : 0;
+		var indexY = Random.Range(0, 2) == 0 ? M - 1 : 0;
+		
+		finalFloor = mapFloor[indexX, indexY];
+		finalFloor.ActiveFinalPlanet();
+		gameManager.AddEventWinGame(finalFloor);
 
 	}
 
@@ -91,5 +109,7 @@ public class FloorGenerator : MonoBehaviour {
 	}
 
 
-
+	public bool IsCurrentFloorFinal(FloorManager floorManager) {
+		return finalFloor == floorManager;
+	}
 }
